@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function sendSOSAlert() {
+            fetch('http://10.0.2.2:5000/start', {  // Change this URL as necessary
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.status);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while sending SOS alert.');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('sosAlertButton').addEventListener('click', sendSOSAlert);
+        });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreeSafe Dashboard</title>
+    <link rel="stylesheet" href="st.css">
+
+</head>
+<body>
+<header>
+    <img src="icons/log.png" alt="StreeSafe Logo" class="logo">
+    <h1>स्त्रीSafe Dashboard</h1>
+</header>
+<main>
+    <section id="dashboard">
+        <h2>Dashboard</h2>
+        <button class="cta-button" id="sosAlertButton">Send SOS Alert</button><br>
+        <button class="cta-button" id="safeRoutesButton">Safe Routes</button><br>
+        <button class="cta-button" id="nearestPoliceButton">Nearest Police Station</button><br>
+        <button class="cta-button" id="genderDistribution">Gender distribution</button>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2024 Women's Safety App. All rights reserved.</p>
+</footer>
+</body>
+</html>
